@@ -1,0 +1,70 @@
+@import '../../styles/theme';
+
+.shortcuts-card {
+  padding: 19px 5px;
+  background-color: $white;
+  flex-direction: column;
+  box-shadow: 0 15px 10px 1px rgba(40, 170, 255, 0.1);
+
+  &-title {
+    font-weight: 500;
+    size: 34px;
+    padding: 10px 30px 30px 30px;
+  }
+
+  &-content {
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex: 1;
+  }
+
+  &-item {
+    display: flex;
+    flex: 1;
+
+    &-box {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      &-img {
+        image {
+          width: 55px;
+        }
+      }
+
+      &-txt {
+        margin-top: 10px;
+        color: $text-color-light;
+        font-size: 28px;
+        line-height: 36px;
+      }
+    }
+
+    &-break {
+      width: 3px;
+      height: 40px;
+      background: rgba(235, 238, 242, 1);
+      border-radius: 1px;
+      display: flex;
+      align-self: center;
+    }
+  }
+
+}
+
+.shortcuts-card.round-top {
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+}
+
+.shortcuts-card.round-bottom {
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+}

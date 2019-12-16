@@ -22,7 +22,7 @@
 
 ###### Key
 
-后端返回的class名称，一个字符串，例如 "com.terapico.doublechain.appview.HomePage"
+后端返回的class名称，一个字符串，例如 "com.terapico.doublechain.appview.ServiceCenterPage"
 
 ###### Value
 

@@ -1,0 +1,140 @@
+@import '../../styles/theme';
+
+.service-center-page {
+  @extend %page;
+
+
+  .search-bar {
+    background-color: $white;
+    padding: 15px 15px 20px 15px;
+
+    .at-search-bar::after {
+      border: none;
+    }
+
+    &-history {
+      padding: 10px 0 10px 20px;
+      display: flex;
+      flex-direction: row;
+      margin-top: 10px;
+      box-sizing: border-box;
+
+      &-keyword {
+        justify-content: center;
+        box-sizing: border-box;
+        text-align: center;
+        padding: 5px 10px;
+        border: 2px solid $primary-color;
+        border-radius: 10px;
+        width: 150px;
+        margin: 0 15px;
+        color: $text-color-lighter;
+        height: 50px;
+        @include text-ellipsis;
+      }
+    }
+
+    &-history.space-around {
+      justify-content: space-between;
+    }
+  }
+
+  .change-request-bar {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: $color-page-bg;
+  }
+
+  .view-group {
+    margin-top: 30px;
+    padding: 10px 40px;
+
+    &-title {
+      font-weight: 500;
+      &::before {
+        content: '\00a0';
+        width: 10px;
+        height: 30px;
+        margin-right: 20px;
+        background-color: $primary-color !important;
+      }
+    }
+  }
+}
+
+.service-item-bar {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.section-bar {
+  padding-top: 20px;
+  display: flex;
+  flex-direction: row;
+
+  &-title {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+
+    &-txt-en {
+      font-family: $b181black;
+      font-size: 26px;
+    }
+
+    &-txt {
+      font-size: 24px;
+      font-weight: 400;
+    }
+
+    &-preicon {
+      width: 10px;
+      height: 20px;
+      background-color: $primary-color;
+      margin-right: 20px;
+    }
+
+    &-second {
+      font-size: 28px;
+      font-weight: 500;
+      margin-top: 10px;
+    }
+  }
+
+  &-action {
+    display: flex;
+    font-family: $b181black;
+    color: #56585c;
+    font-size: 24px;
+    align-self: flex-end;
+
+    image {
+      width: 14px;
+      height: 14px;
+      margin-left: 6px;
+      align-self: center;
+    }
+  }
+}
+
+.service-grid {
+  margin-top: 20px;
+
+  .at-grid-item {
+    height: 183px;
+  }
+
+  .content-inner__img {
+    width: 55px;
+    height: 55px;
+  }
+
+  .content-inner__text {
+    margin-top: 20px;
+    font-size: 28px;
+    color: #2e2f31;
+  }
+}
+

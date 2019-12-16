@@ -3,7 +3,7 @@ import { Image, View } from '@tarojs/components'
 import { connect } from '@tarojs/redux'
 import NavigationService from '@/nice-router/navigation.service'
 import NavigationLineItem from '@/components/navigation-line-item'
-import NavigationBoxBar from '@/components/navigation-box-bar'
+import ShortcutsCard from '@/components/common/shortcuts-card'
 import Config from '@/utils/config'
 import './me.scss'
 
@@ -72,7 +72,7 @@ export default class MePage extends Taro.PureComponent {
             </View>
           </View>
           <View className='me-page-header-footer'>
-            <NavigationBoxBar list={boxNavigatorList} />
+            <ShortcutsCard list={boxNavigatorList} />
           </View>
         </View>
         <View className='me-page-body'>

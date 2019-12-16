@@ -34,7 +34,8 @@ class App extends Component {
   componentDidMount() {
     if (Taro.canIUse('getUpdateManager')) {
       const updateManager = Taro.getUpdateManager()
-      updateManager.onCheckForUpdate(() => {})
+      updateManager.onCheckForUpdate(() => {
+      })
       updateManager.onUpdateReady(() => {
         Taro.showModal({
           title: '更新提示',
@@ -58,10 +59,10 @@ class App extends Component {
 
   config = {
     pages: [
+      'pages/service-center/service-center-page',
       'pages/home/home-page',
       'pages/biz/hello-daas-page',
       'pages/me/me-page',
-      'pages/article/article-detail-page',
       'pages/login/login-page',
       // base
       'nice-router/h5-page',

@@ -1,6 +1,6 @@
-# HomePage
+# ServiceCenterPage
 
-   服务端返回x-class=com.terapico.appview.HomePage
+   服务端返回x-class=com.terapico.appview.ServiceCenterPage
    router 会默认跳转home页面
 
 #### 设计目标
@@ -29,4 +29,4 @@
 
 #### 相关的代码文件
 
-home-page.js, home.model.js, welcome-carousel.js, viewmapping.config.js
+service-center-page.js, home.model.js, welcome-carousel.js, viewmapping.config.js
