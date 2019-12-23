@@ -1,0 +1,48 @@
+{
+  "platform": [
+    {
+      "name": "questionList",
+      "odTermKey": "question",
+      "fieldTermKey": "platform.question_list",
+      "isMultipleTerm": false,
+      "icon": "question",
+      "viewGroup": "__no_group",
+      "mobileViewGroup": "",
+      "linkToUrl": "questionManager/listByPlatform/:platform/"
+    },
+
+    {
+      "name": "examRankingList",
+      "odTermKey": "exam_ranking",
+      "fieldTermKey": "platform.exam_ranking_list",
+      "isMultipleTerm": false,
+      "icon": "500px",
+      "viewGroup": "__no_group",
+      "mobileViewGroup": "",
+      "linkToUrl": "examRankingManager/listByPlatform/:platform/"
+    },
+
+    {
+      "name": "wechatUserList",
+      "odTermKey": "wechat_user",
+      "fieldTermKey": "platform.wechat_user_list",
+      "isMultipleTerm": false,
+      "icon": "user",
+      "viewGroup": "__no_group",
+      "mobileViewGroup": "",
+      "linkToUrl": "wechatUserManager/listByPlatform/:platform/"
+    }
+  ],
+  "platform-me": [
+    {
+      "name": "changeRequestList",
+      "odTermKey": "change_request",
+      "fieldTermKey": "platform.change_request_list",
+      "isMultipleTerm": false,
+      "icon": "exchange-alt",
+      "viewGroup": "变更",
+      "mobileViewGroup": "me",
+      "linkToUrl": "changeRequestManager/listByPlatform/:platform/"
+    }
+  ]
+}

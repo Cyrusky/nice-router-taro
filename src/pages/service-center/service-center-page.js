@@ -9,14 +9,11 @@ import forEach from 'lodash/forEach'
 
 import './styles.scss'
 
-import servicesData from './service-center.json'
 import buildingIcon from '../../assets/icon/icon_loupan@2x.png'
 import commerceIcon from '../../assets/icon/icon_liansuo@2x.png'
-import LocaleService from '../../service/locale.service'
-
+import ServiceCenterTools from '../../schema-data/service-center-tools'
 
 export default class ServiceCenterPage extends Taro.PureComponent {
-
   static options = {
     addGlobalClass: true,
   }
@@ -46,7 +43,6 @@ export default class ServiceCenterPage extends Taro.PureComponent {
         searchHistory: list,
       })
     }
-
   }
 
   render() {
@@ -56,26 +52,26 @@ export default class ServiceCenterPage extends Taro.PureComponent {
       'space-around': searchHistory.length === 4,
     })
 
-    const serviceCenterName = m_.keys(servicesData)[0]
-    const serviceGroup = groupBy(servicesData[serviceCenterName], 'viewGroup')
+    const services = ServiceCenterTools.getServicesByPage()
+    const serviceGroup = groupBy(services, 'viewGroup')
     const serviceGroupList = []
-    forEach(serviceGroup, (services, groupName = '') => {
-      const gridData = services.map(it => {
-        const { odTermKey, fieldTermKey, isMultipleTerm } = it
-        const name = LocaleService.mtrans(odTermKey, fieldTermKey, isMultipleTerm)
-        return ({
+
+    forEach(serviceGroup, (serviceList, groupName = '') => {
+      const gridData = serviceList.map((it) => {
+        return {
           ...it,
-          value: name,
-          image: it.imageUrl,
-        })
+          value: it.title,
+          image: it.icon || it.imageUrl,
+        }
       })
+
+      const name = groupName === '__no_group' ? '菜单' : groupName
       serviceGroupList.push({
-        id: gridData,
-        name: groupName === '__no_group' ? '菜单' : groupName,
+        id: name,
+        name,
         gridData,
       })
     })
-
 
     return (
       <View className='service-center-page'>
@@ -87,47 +83,35 @@ export default class ServiceCenterPage extends Taro.PureComponent {
             onActionClick={this.onActionClick.bind(this)}
           />
 
-          {
-            searchHistory.length > 0 && (
-              <View className={historyCls}>
-                {
-                  searchHistory.map(it => (
-                    <View
-                      key={it.id}
-                      className='search-bar-history-keyword'
-                      onClick={this.handleKeywordSearch.bind(this, it)}
-                    >
-                      {it.keyword}
-                    </View>
-                  ))
-                }
-              </View>
-            )
-          }
-
+          {searchHistory.length > 0 && (
+            <View className={historyCls}>
+              {searchHistory.map((it) => (
+                <View
+                  key={it.id}
+                  className='search-bar-history-keyword'
+                  onClick={this.handleKeywordSearch.bind(this, it)}
+                >
+                  {it.keyword}
+                </View>
+              ))}
+            </View>
+          )}
         </View>
 
-        {
-          shortcutsList.length > 0 && (
-            <View className='change-request-bar'>
-              <ShortcutsCard list={shortcutsList} title='常用功能' />
-            </View>
-          )
-        }
+        {shortcutsList.length > 0 && (
+          <View className='change-request-bar'>
+            <ShortcutsCard list={shortcutsList} title='常用功能' />
+          </View>
+        )}
 
-        {
-          serviceGroupList.map(it => (
-            <View className='view-group' key={it.id}>
-              <View className='view-group-title'>
-                {it.name}
-              </View>
-              <View className='grid-container'>
-                <AtGrid mode='square' className='service-grid' data={it.gridData} onClick={this.handleClick} />
-              </View>
+        {serviceGroupList.map((it) => (
+          <View className='view-group' key={it.id}>
+            <View className='view-group-title'>{it.name}</View>
+            <View className='grid-container'>
+              <AtGrid mode='square' className='service-grid' data={it.gridData} onClick={this.handleClick} />
             </View>
-          ))
-        }
-
+          </View>
+        ))}
       </View>
     )
   }

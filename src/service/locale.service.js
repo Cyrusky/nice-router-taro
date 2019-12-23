@@ -3,8 +3,8 @@ import localeData from './locale.data'
 const customLocaleMessage = []
 const messages = {}
 
-localeData.forEach(item => messages[item.key] = item)
-customLocaleMessage.forEach(item => messages[item.key] = item)
+localeData.forEach((item) => (messages[item.key] = item))
+customLocaleMessage.forEach((item) => (messages[item.key] = item))
 
 function trans(termKey) {
   var result = messages[termKey]
@@ -19,7 +19,6 @@ function mtrans(baseTermKey, extraTermKey, isMultiple) {
     return trans(baseTermKey)
   }
   return `${trans(baseTermKey)}(${trans(extraTermKey)})`
-
 }
 
 const LocaleService = {

@@ -34,3 +34,14 @@ $b181black: Brother-1816-Black, -apple-system, system-ui !important;
   background-color: $color-page-bg;
   min-height: 100vh;
 }
+
+%flex {
+  display: flex;
+  box-sizing: border-box;
+}
+
+%flex1 {
+  display: flex;
+  flex: 1;
+  box-sizing: border-box;
+}

@@ -16,7 +16,6 @@ import { initial } from './service/initial.service'
 // if (process.env.NODE_ENV !== 'production' && process.env.TARO_ENV === 'h5') {
 //   require('nerv-devtools')
 // }
-
 const dvaApp = dva.createApp({
   initialState: {},
   models: models,
@@ -27,15 +26,10 @@ NiceRouter.start({ config: Config, container: dvaApp })
 initial()
 
 class App extends Component {
-  // componentWillMount() {
-  //   NavigationService.dispatch('app/wxLogin')
-  // }
-
   componentDidMount() {
     if (Taro.canIUse('getUpdateManager')) {
       const updateManager = Taro.getUpdateManager()
-      updateManager.onCheckForUpdate(() => {
-      })
+      updateManager.onCheckForUpdate(() => {})
       updateManager.onUpdateReady(() => {
         Taro.showModal({
           title: '更新提示',
@@ -59,10 +53,11 @@ class App extends Component {
 
   config = {
     pages: [
-      'pages/service-center/service-center-page',
       'pages/home/home-page',
-      'pages/biz/hello-daas-page',
       'pages/me/me-page',
+      'pages/service-center/service-center-page',
+
+      'pages/biz/hello-daas-page',
       'pages/login/login-page',
       // base
       'nice-router/h5-page',
@@ -77,12 +72,6 @@ class App extends Component {
       // biz
       'pages/biz/generic-test-page',
     ],
-
-    permission: {
-      'scope.userLocation': {
-        desc: '你的位置信息将用于小程序位置接口的效果展示',
-      },
-    },
     window: {
       backgroundTextStyle: 'light',
       navigationBarBackgroundColor: '#28aaff',
@@ -103,10 +92,10 @@ class App extends Component {
           text: '首页',
         },
         {
-          pagePath: 'pages/biz/generic-test-page',
+          pagePath: 'pages/service-center/service-center-page',
           iconPath: './assets/icon/icon_service_n@2x.png',
           selectedIconPath: './assets/icon/icon_service_s@2x.png',
-          text: 'GenericPage',
+          text: '功能大厅',
         },
         {
           pagePath: 'pages/me/me-page',

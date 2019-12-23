@@ -30,8 +30,7 @@ export default class ShortcutsCard extends Taro.PureComponent {
 
     return (
       <View className={rootClass} customStyle={customStyle}>
-
-        <View className='shortcuts-card-title'>{title}</View>
+        {title && <View className='shortcuts-card-title'>{title}</View>}
         <View className='shortcuts-card-content'>
           {list.map((it, index) => {
             const { icon, imageUrl, title: itemTitle, badge } = it
