@@ -45,3 +45,10 @@ $b181black: Brother-1816-Black, -apple-system, system-ui !important;
   flex: 1;
   box-sizing: border-box;
 }
+
+%flex-center {
+  display: flex;
+  box-sizing: border-box;
+  justify-content: center;
+  align-items: center;
+}

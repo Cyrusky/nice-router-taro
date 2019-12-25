@@ -1,62 +1,59 @@
 import Taro from '@tarojs/taro'
-import { Image, View } from '@tarojs/components'
-import slice from 'lodash/slice'
-import NavigationService from '@/nice-router/navigation.service'
+import { View } from '@tarojs/components'
+import concat from 'lodash/concat'
+import ActionFloorItem from './action-floor-item'
 
 import './styles.scss'
 
-const defaultImageUrl = 'http://www.eastphoto.cn/indexImages/ep-012136603.jpg'
-
 export default class ActionFloor extends Taro.PureComponent {
-  handleClick = (item) => {
-    NavigationService.view(item)
-  }
-
   render() {
-    const { actions = [] } = this.props
+    // const { actions = [] } = this.props
+    const actions = [1, 2, 3, 4, 5]
     if (actions.length === 0) {
       return null
     }
 
-    let firstFloor = []
-    let secondFloor = []
-
-    if (actions.length < 3) {
-      secondFloor = actions
-    }
+    let actionList = actions
     if (actions.length >= 3) {
-      firstFloor = slice(actions, 0, 3)
-      secondFloor = slice(actions, 3, 5)
+      const t1 = actions[3]
+      const t2 = actions[4]
+      actionList = concat([t1, t2], actions)
     }
+
+    console.log('action-floor', actionList)
+    const action1 = actionList[0]
+    const action2 = actionList[1]
+    const action3 = actionList[2]
+    const action4 = actionList[3]
+    const action5 = actionList[4]
 
     return (
       <View className='action-floor'>
-        {firstFloor.length > 0 && (
+        {action3 && (
           <View className='action-floor-first'>
-            <View className='action-floor-first-left' onClick={() => this.handleClick()}>
-              <Image mode='scaleToFill' src={defaultImageUrl} />
+            <View className='action-floor-first-left'>
+              <ActionFloorItem action={action3} />
             </View>
 
-            <View className='action-floor-first-right' onClick={() => this.handleClick()}>
-              <View className='action-floor-first-right-top' onClick={() => this.handleClick()}>
-                <Image mode='scaleToFill' src={defaultImageUrl} />
+            <View className='action-floor-first-right'>
+              <View className='action-floor-first-right-top'>
+                <ActionFloorItem action={action4} />
               </View>
-
-              <View className='action-floor-first-right-bottom' onClick={() => this.handleClick()}>
-                <Image mode='scaleToFill' src={defaultImageUrl} />
+              <View className='action-floor-first-right-bottom'>
+                <ActionFloorItem action={action5} />
               </View>
             </View>
           </View>
         )}
-
-        {secondFloor.length > 0 && (
+        {action1 && (
           <View className='action-floor-second'>
-            <View className='action-floor-second-left' onClick={() => this.handleClick()}>
-              <Image mode='scaleToFill' src={defaultImageUrl} />
+            <View className='action-floor-second-left'>
+              <ActionFloorItem className='blue' action={action1} />
             </View>
-            {secondFloor[1] && (
-              <View className='action-floor-second-right' onClick={() => this.handleClick()}>
-                <Image mode='scaleToFill' src={defaultImageUrl} />
+
+            {action2 && (
+              <View className='action-floor-second-right'>
+                <ActionFloorItem className='blue' action={action2} />
               </View>
             )}
           </View>
