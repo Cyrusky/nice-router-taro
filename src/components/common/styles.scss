@@ -174,25 +174,28 @@
   border-radius: 10px;
   position: relative;
 
-  &-content {
+  &-title {
     @extend %flex-center;
-
-    flex-direction: column;
     background-color: #ede5e2;
+    border-radius: 10px;
+    font-size: 35px;
+    color: $text-color;
+    height: 100%;
+  }
+
+  &-brief {
+    height: 0;
+    border-top: 20px solid #b18a4c;
+    border-bottom: 20px solid #b18a4c;
+    border-left: 20px solid transparent;
     position: absolute;
     top: 0;
     right: 0;
-    bottom: 0;
-    left: 0;
-    border-radius: 10px;
 
-    &-title {
-      font-size: 35px;
-      color: $text-color;
-    }
-
-    &-brief {
-      color: $text-color-light;
+    &-txt {
+      color: $white;
+      margin-top: -20px;
+      padding: 0 10px;
     }
   }
 
@@ -204,7 +207,12 @@
 }
 
 .action-floor-item.blue {
-  .action-floor-item-content {
+  .action-floor-item-title {
     background-color: #dfe7eb;
+  }
+
+  .action-floor-item-brief {
+    border-top-color: #7ba7d1;
+    border-bottom-color: #7ba7d1;
   }
 }

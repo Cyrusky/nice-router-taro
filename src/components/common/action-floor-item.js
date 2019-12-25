@@ -22,13 +22,14 @@ export default class ActionFloorItem extends Taro.PureComponent {
     console.log(rootCls)
     return (
       <View className={rootCls} onClick={this.handleClick}>
-        {imageUrl && <Image mode='scaleToFill' src={imageUrl} />}
-        {!imageUrl && (
-          <View className='action-floor-item-content'>
-            <View className='action-floor-item-content-title'>{title}</View>
-            {brief && <View className='action-floor-item-content-brief'>{brief}</View>}
-          </View>
+        {imageUrl ? (
+          <Image mode='scaleToFill' src={imageUrl} />
+        ) : (
+          <View className='action-floor-item-title'>{title}</View>
         )}
+        <View className='action-floor-item-brief'>
+          <View className='action-floor-item-brief-txt'> {brief}</View>
+        </View>
       </View>
     )
   }
