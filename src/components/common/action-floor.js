@@ -7,8 +7,7 @@ import './styles.scss'
 
 export default class ActionFloor extends Taro.PureComponent {
   render() {
-    // const { actions = [] } = this.props
-    const actions = [1, 2, 3, 4, 5]
+    const { actions = [] } = this.props
     if (actions.length === 0) {
       return null
     }
