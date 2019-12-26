@@ -111,7 +111,6 @@ export default class LineItemWrapper extends Taro.PureComponent {
         {template === 'waterfall' && <Waterfall {...itemProps} />}
         {template === 'product' && <ProductTemplate {...itemProps} />}
         {template === 'card' && <CardTemplate {...itemProps} />}
-        {template === 'image-on-left' && <CardTemplate className='small' {...itemProps} />}
         {template === 'document-card' && <DocumentCardTemplate {...itemProps} />}
         {template === 'article' && <ArticleTemplate {...itemProps} />}
         {template === 'article-small' && <ArticleTemplate className='article-small' {...itemProps} />}
