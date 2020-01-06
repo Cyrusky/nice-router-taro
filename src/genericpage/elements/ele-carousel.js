@@ -4,9 +4,9 @@ import { Swiper, SwiperItem, Video, View } from '@tarojs/components'
 import NavigationService from '@/nice-router/navigation.service'
 import { toRpx } from '@/utils/index'
 import isEmpty from 'lodash/isEmpty'
+import ServerImage from '@/components/image/server-image'
 
 import './ele.scss'
-import EleImage from './ele-image'
 import EleHelper from '../ele-helper'
 
 export default class EleCarousel extends Taro.PureComponent {
@@ -23,7 +23,7 @@ export default class EleCarousel extends Taro.PureComponent {
     circular: true,
     indicatorColor: 'rgba(255, 255, 255, 0.6)',
     indicatorActiveColor: '#fff',
-    indicatorDots: true,
+    indicatorDots: null,
     customStyle: {},
     className: null,
   }
@@ -58,6 +58,8 @@ export default class EleCarousel extends Taro.PureComponent {
 
     const style = { ...customStyle, height: toRpx(height) }
 
+    const showDots = indicatorDots === null ? items.length > 1 : indicatorDots
+
     const rootClass = EleHelper.classNames('ele-carousel', className)
     return (
       <View className={rootClass} style={style}>
@@ -68,16 +70,18 @@ export default class EleCarousel extends Taro.PureComponent {
           circular={circular}
           indicatorColor={indicatorColor}
           indicatorActiveColor={indicatorActiveColor}
-          indicatorDots={indicatorDots}
+          indicatorDots={showDots}
           style={style}
         >
           {items.map((it) => {
-            const { videoUrl = '', imageUrl } = it
+            const { videoUrl = '', imageUrl, id } = it
+            console.log('id', id)
             return (
-              <SwiperItem key={it.id} onClick={this.handleClick.bind(this, it)}>
+              <SwiperItem key={id} onClick={this.handleClick.bind(this, it)}>
                 {videoUrl.length > 0 ? (
                   <View>
                     <Video
+                      className='ele-carousel-video'
                       src={videoUrl}
                       controls
                       autoplay={it.autoplay}
@@ -89,7 +93,7 @@ export default class EleCarousel extends Taro.PureComponent {
                     />
                   </View>
                 ) : (
-                  <EleImage {...it} customStyle={style} />
+                  <ServerImage src={it.imageUrl} my-class='ele-carousel-image' customStyle={style} />
                 )}
               </SwiperItem>
             )

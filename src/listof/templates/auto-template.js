@@ -49,6 +49,19 @@ export default class AutoTemplate extends Taro.PureComponent {
           )}
           {infoList.length > 0 && <TxtTable list={infoList} />}
         </View>
+        {list.length > 0 && (
+          <View className='image-list'>
+            {list.map((it, index) => {
+              const { id } = it
+              console.log('123123123', id)
+              return (
+                <View key={id} className='image-list-item' style={{ marginLeft: index === 0 ? 0 : '5rpx' }}>
+                  <ServerImage my-class='image-list-item-image' src={it.imageUrl} />
+                </View>
+              )
+            })}
+          </View>
+        )}
       </View>
     )
   }
