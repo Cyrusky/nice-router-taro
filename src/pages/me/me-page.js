@@ -1,10 +1,11 @@
 import Taro from '@tarojs/taro'
-import { Image, View } from '@tarojs/components'
+import { View } from '@tarojs/components'
 import { connect } from '@tarojs/redux'
 import NavigationService from '@/nice-router/navigation.service'
 import ShortcutsCard from '@/components/common/shortcuts-card'
 import Config from '@/utils/config'
 import { AtIcon } from 'taro-ui'
+import ServerImage from '@/components/image/server-image'
 
 import './me.scss'
 
@@ -58,7 +59,7 @@ export default class MePage extends Taro.PureComponent {
         <View className='me-page-header'>
           <View className='me-page-header-top'>
             <View className='avatar' onClick={this.handleOpenProfile}>
-              <Image src={imageUrl || defaultAvatar} />
+              <ServerImage my-class='avatar-image' src={imageUrl || defaultAvatar} />
             </View>
 
             <View className='content'>
@@ -77,7 +78,11 @@ export default class MePage extends Taro.PureComponent {
               return (
                 <View key={code} className='service-line' onClick={this.handleClick.bind(this, it)}>
                   <View className='service-line-left'>
-                    <Image mode='widthFix' src={it.icon || it.imageUrl || defaultAvatar} />
+                    <ServerImage
+                      my-class='service-line-left-image'
+                      mode='widthFix'
+                      src={it.icon || it.imageUrl || defaultAvatar}
+                    />
                   </View>
                   <View className='service-line-title'>{it.title}</View>
                   <View className='service-line-right'>

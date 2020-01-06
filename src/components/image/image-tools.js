@@ -9,7 +9,6 @@ function loadServerImage(uri, style) {
     return uri
   }
   let url = uri || ''
-
   if (!/^(http|https):/.test(url) || url.indexOf('x-oss-process') > -1) {
     return url
   }

@@ -107,6 +107,7 @@
 
 .action-floor {
   @extend %flex-column;
+
   &-item-container {
     display: block;
     width: 100%;
