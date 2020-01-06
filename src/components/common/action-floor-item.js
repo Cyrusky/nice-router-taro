@@ -1,6 +1,7 @@
 import Taro from '@tarojs/taro'
-import { Image, View } from '@tarojs/components'
+import { View } from '@tarojs/components'
 import NavigationService from '@/nice-router/navigation.service'
+import ServerImage from '@/components/image/server-image'
 import classNames from 'classnames'
 import './styles.scss'
 
@@ -23,7 +24,7 @@ export default class ActionFloorItem extends Taro.PureComponent {
     return (
       <View className={rootCls} onClick={this.handleClick}>
         {imageUrl ? (
-          <Image mode='scaleToFill' src={imageUrl} />
+          <ServerImage mode='scaleToFill' my-class='action-floor-item-image' src={imageUrl} />
         ) : (
           <View className='action-floor-item-title'>{title}</View>
         )}

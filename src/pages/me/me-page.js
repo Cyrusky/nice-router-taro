@@ -73,10 +73,11 @@ export default class MePage extends Taro.PureComponent {
         <View className='me-page-body'>
           <View className='service'>
             {lineItemNavigatorList.map((it) => {
+              const { code } = it
               return (
-                <View key={it.code} className='service-line' onClick={this.handleClick.bind(this, it)}>
+                <View key={code} className='service-line' onClick={this.handleClick.bind(this, it)}>
                   <View className='service-line-left'>
-                    <Image mode='widthFix' src={it.icon || imageUrl || defaultAvatar} />
+                    <Image mode='widthFix' src={it.icon || it.imageUrl || defaultAvatar} />
                   </View>
                   <View className='service-line-title'>{it.title}</View>
                   <View className='service-line-right'>

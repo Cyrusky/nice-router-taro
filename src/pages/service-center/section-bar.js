@@ -1,7 +1,8 @@
 import Taro from '@tarojs/taro'
-import { Image, View } from '@tarojs/components'
+import { View } from '@tarojs/components'
 import classNames from 'classnames'
 import NavigationService from '@/nice-router/navigation.service'
+import ServerImage from '@/components/image/server-image'
 
 import './styles.scss'
 import moreIcon from '../../assets/icon/icon_more@2x.png'
@@ -31,7 +32,7 @@ export default class SectionBar extends Taro.PureComponent {
         {showMore && (
           <View className='section-bar-action' onClick={this.handleClick}>
             MORE
-            <Image src={moreIcon} />
+            <ServerImage my-class='section-bar-action-image' src={moreIcon} />
           </View>
         )}
       </View>

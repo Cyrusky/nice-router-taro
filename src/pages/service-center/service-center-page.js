@@ -85,15 +85,18 @@ export default class ServiceCenterPage extends Taro.PureComponent {
 
           {searchHistory.length > 0 && (
             <View className={historyCls}>
-              {searchHistory.map((it) => (
-                <View
-                  key={it.id}
-                  className='search-bar-history-keyword'
-                  onClick={this.handleKeywordSearch.bind(this, it)}
-                >
-                  {it.keyword}
-                </View>
-              ))}
+              {searchHistory.map((it) => {
+                const { id, keyword } = it
+                return (
+                  <View
+                    key={id}
+                    className='search-bar-history-keyword'
+                    onClick={this.handleKeywordSearch.bind(this, it)}
+                  >
+                    {keyword}
+                  </View>
+                )
+              })}
             </View>
           )}
         </View>
@@ -104,14 +107,17 @@ export default class ServiceCenterPage extends Taro.PureComponent {
           </View>
         )}
 
-        {serviceGroupList.map((it) => (
-          <View className='view-group' key={it.id}>
-            <View className='view-group-title'>{it.name}</View>
-            <View className='grid-container'>
-              <AtGrid mode='square' className='service-grid' data={it.gridData} onClick={this.handleClick} />
+        {serviceGroupList.map((it) => {
+          const { id, name, gridData } = it
+          return (
+            <View className='view-group' key={id}>
+              <View className='view-group-title'>{name}</View>
+              <View className='grid-container'>
+                <AtGrid mode='square' className='service-grid' data={gridData} onClick={this.handleClick} />
+              </View>
             </View>
-          </View>
-        ))}
+          )
+        })}
       </View>
     )
   }

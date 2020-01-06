@@ -33,10 +33,8 @@
       justify-content: center;
       align-items: center;
 
-      &-img {
-        image {
-          width: 50px;
-        }
+      &-image {
+        width: 50px;
       }
 
       &-txt {
@@ -109,8 +107,8 @@
 
 .action-floor {
   @extend %flex-column;
-
-  action-floor-item {
+  &-item-container {
+    display: block;
     width: 100%;
   }
 
@@ -192,7 +190,7 @@
     }
   }
 
-  image {
+  &-image {
     width: 100%;
     height: 100%;
     border-radius: 10px;
