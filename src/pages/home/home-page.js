@@ -11,16 +11,16 @@ import SectionBar from '../service-center/section-bar'
 const defaultImageUrl = 'http://www.eastphoto.cn/indexImages/ep-012136603.jpg'
 
 @connect(({ home }) => ({ ...home }))
-export default class HomePage extends Taro.PureComponent {
+class HomePage extends Taro.PureComponent {
   // carousel,
   // change request
   // icon list
   // 展开 list个
   render() {
     const {
-      slideList = [{ imageUrl: defaultImageUrl }, { imageUrl: defaultImageUrl }],
-      actionList = [1, 2, 3, 4, 5],
-      sectionList = [{ title: '业务列表', brief: 'EnglishName', linkToUrl: './', list: [] }],
+      slideList = defaultSlideList,
+      actionList = defaultActionList,
+      sectionList = defaultSectionList,
     } = this.props
 
     return (
@@ -42,3 +42,21 @@ export default class HomePage extends Taro.PureComponent {
     )
   }
 }
+
+export default HomePage
+const defaultSlideList = [{ videoUrl: defaultImageUrl, imageUrl: defaultImageUrl }, { imageUrl: defaultImageUrl }]
+const defaultSectionList = [{ title: '业务列表', brief: 'EnglishName', linkToUrl: './', list: [] }]
+const defaultActionList = [
+  {
+    title: '中华',
+    brief: '牛逼',
+    imageUrl: defaultImageUrl,
+  },
+  {
+    title: '玉溪',
+    brief: '也很牛逼',
+  },
+  3,
+  4,
+  5,
+]

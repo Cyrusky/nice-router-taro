@@ -1,14 +1,13 @@
-import '@tarojs/async-await'
 import Taro, { Component } from '@tarojs/taro'
 import { Provider } from '@tarojs/redux'
-import NiceRouter from '@/nice-router/nice-router'
-import Config from '@/utils/config'
 import { View } from '@tarojs/components'
+import Config from '@/utils/config'
+import NiceRouter from '@/nice-router/nice-router'
 
 import './app.scss'
 import dva from './dva'
-import models from './models/model-center'
 
+import models from './models/model-center'
 import { initial } from './service/initial.service'
 
 // 如果需要在 h5 环境中开启 React Devtools
@@ -18,6 +17,7 @@ import { initial } from './service/initial.service'
 // }
 const dvaApp = dva.createApp({
   initialState: {},
+  enableLog: false,
   models: models,
 })
 const store = dvaApp.getStore()
@@ -57,8 +57,12 @@ class App extends Component {
       'pages/me/me-page',
       'pages/service-center/service-center-page',
 
-      'pages/biz/hello-daas-page',
       'pages/login/login-page',
+      'pages/biz/generic-test-page',
+      'pages/me/me-page',
+
+      'pages/biz/hello-daas-page',
+
       // base
       'nice-router/h5-page',
       'nice-router/network-exception-page',
@@ -70,7 +74,6 @@ class App extends Component {
       'listof/listof-page3',
       'listof/listof-page4',
       // biz
-      'pages/biz/generic-test-page',
     ],
     window: {
       backgroundTextStyle: 'light',
