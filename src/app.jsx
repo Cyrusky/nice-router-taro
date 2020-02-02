@@ -59,7 +59,6 @@ class App extends Component {
 
       'pages/login/login-page',
       'pages/biz/generic-test-page',
-      'pages/me/me-page',
 
       'pages/biz/hello-daas-page',
 
