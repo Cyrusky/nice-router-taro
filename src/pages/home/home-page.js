@@ -3,8 +3,10 @@ import { View } from '@tarojs/components'
 import { connect } from '@tarojs/redux'
 import EleCarousel from '@/genericpage/elements/ele-carousel'
 import ActionFloor from '@/components/common/action-floor'
-import Listof from '../../listof/listof'
+import NavigationService from '@/nice-router/navigation.service'
+import Config from '@/utils/config'
 
+import Listof from '../../listof/listof'
 import './home.scss'
 import SectionBar from '../service-center/section-bar'
 
@@ -12,6 +14,11 @@ const defaultImageUrl = 'http://www.eastphoto.cn/indexImages/ep-012136603.jpg'
 
 @connect(({ home }) => ({ ...home }))
 class HomePage extends Taro.PureComponent {
+
+  componentDidMount() {
+    NavigationService.view(Config.api.FooterHome)
+  }
+
   // carousel,
   // change request
   // icon list
