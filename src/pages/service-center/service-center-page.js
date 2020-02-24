@@ -13,7 +13,7 @@ import buildingIcon from '../../assets/icon/icon_loupan@2x.png'
 import commerceIcon from '../../assets/icon/icon_liansuo@2x.png'
 import ServiceCenterTools from '../../schema-data/service-center-tools'
 
-export default class ServiceCenterPage extends Taro.PureComponent {
+export default class ServiceCenterPage extends Taro.Component {
   static options = {
     addGlobalClass: true,
   }

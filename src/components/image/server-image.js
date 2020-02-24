@@ -15,7 +15,7 @@ class ServerImage extends Taro.PureComponent {
     const rootCls = classNames('server-image', 'my-class', className)
     // const style = { width: '100%', height: '100%', ...customStyle }
     const remotePath = ImageTools.getServerImagUrl(src || uri, size)
-    console.log('remote src || uri', src || uri)
+    // console.log('remote src || uri', src || uri)
     return <Image className={rootCls} src={remotePath} mode={mode} style={customStyle} />
   }
 }

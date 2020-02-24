@@ -3,20 +3,18 @@ import { View } from '@tarojs/components'
 import { connect } from '@tarojs/redux'
 import EleCarousel from '@/genericpage/elements/ele-carousel'
 import ActionFloor from '@/components/common/action-floor'
-import NavigationService from '@/nice-router/navigation.service'
-import Config from '@/utils/config'
 
 import Listof from '../../listof/listof'
 import './home.scss'
 import SectionBar from '../service-center/section-bar'
+import ServiceCenterTools from '../../schema-data/service-center-tools'
 
 const defaultImageUrl = 'http://www.eastphoto.cn/indexImages/ep-012136603.jpg'
 
 @connect(({ home }) => ({ ...home }))
 class HomePage extends Taro.PureComponent {
-
   componentDidMount() {
-    NavigationService.view(Config.api.FooterHome)
+    // NavigationService.view(Config.api.FooterHome)
   }
 
   // carousel,
@@ -24,11 +22,10 @@ class HomePage extends Taro.PureComponent {
   // icon list
   // 展开 list个
   render() {
-    const {
-      slideList = defaultSlideList,
-      actionList = defaultActionList,
-      sectionList = defaultSectionList,
-    } = this.props
+    const { slideList = defaultSlideList, sectionList = defaultSectionList } = this.props
+
+    const actionList = ServiceCenterTools.getServicesFormHome()
+    console.log('actionsLIst', actionList)
 
     return (
       <View className='home-page'>
@@ -53,17 +50,17 @@ class HomePage extends Taro.PureComponent {
 export default HomePage
 const defaultSlideList = [{ videoUrl: defaultImageUrl, imageUrl: defaultImageUrl }, { imageUrl: defaultImageUrl }]
 const defaultSectionList = [{ title: '业务列表', brief: 'EnglishName', linkToUrl: './', list: [] }]
-const defaultActionList = [
-  {
-    title: '中华',
-    brief: '牛逼',
-    imageUrl: defaultImageUrl,
-  },
-  {
-    title: '玉溪',
-    brief: '也很牛逼',
-  },
-  3,
-  4,
-  5,
-]
+// const defaultActionList = [
+//   {
+//     title: '中华',
+//     brief: '牛逼',
+//     imageUrl: defaultImageUrl,
+//   },
+//   {
+//     title: '玉溪',
+//     brief: '也很牛逼',
+//   },
+//   3,
+//   4,
+//   5,
+// ]
