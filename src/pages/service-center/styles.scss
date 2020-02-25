@@ -50,6 +50,7 @@
 
     &-title {
       font-weight: 500;
+
       &::before {
         content: '\00a0';
         width: 10px;
@@ -122,17 +123,17 @@
   margin-top: 20px;
 
   .at-grid-item {
-    height: 183px;
+    height: 183px !important;
   }
 
   .content-inner__img {
-    width: 55px;
-    height: 55px;
+    width: 45px !important;
+    height: 45px !important;
   }
 
   .content-inner__text {
     margin-top: 20px;
-    font-size: 28px;
-    color: #2e2f31;
+    font-size: 28px !important;
+    color: #2e2f31 !important;
   }
 }

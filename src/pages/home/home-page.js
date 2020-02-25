@@ -11,6 +11,8 @@ import ServiceCenterTools from '../../schema-data/service-center-tools'
 
 const defaultImageUrl = 'http://www.eastphoto.cn/indexImages/ep-012136603.jpg'
 
+const defaultServices = ServiceCenterTools.getServices('home')
+
 @connect(({ home }) => ({ ...home }))
 class HomePage extends Taro.PureComponent {
   componentDidMount() {
@@ -22,9 +24,8 @@ class HomePage extends Taro.PureComponent {
   // icon list
   // 展开 list个
   render() {
-    const { slideList = defaultSlideList, sectionList = defaultSectionList } = this.props
+    const { slideList = defaultSlideList, actionList = defaultServices, sectionList = defaultSectionList } = this.props
 
-    const actionList = ServiceCenterTools.getServicesFormHome()
     console.log('actionsLIst', actionList)
 
     return (

@@ -46,13 +46,13 @@ export default class ServiceCenterPage extends Taro.Component {
   }
 
   render() {
-    const { shortcutsList = defaultShortcutsList } = this.props
+    const { actionList = defaultShortcutsList } = this.props
     const { searchHistory = [] } = this.state
     const historyCls = classNames('search-bar-history', {
       'space-around': searchHistory.length === 4,
     })
 
-    const services = ServiceCenterTools.getServicesByPage()
+    const services = ServiceCenterTools.getServices()
     const serviceGroup = groupBy(services, 'viewGroup')
     const serviceGroupList = []
 
@@ -101,9 +101,9 @@ export default class ServiceCenterPage extends Taro.Component {
           )}
         </View>
 
-        {shortcutsList.length > 0 && (
+        {actionList.length > 0 && (
           <View className='change-request-bar'>
-            <ShortcutsCard list={shortcutsList} title='常用功能' />
+            <ShortcutsCard list={actionList} title='常用功能' />
           </View>
         )}
 

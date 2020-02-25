@@ -1,34 +1,22 @@
+import keys from 'lodash/keys'
 import isEmpty from 'lodash/isEmpty'
-
-import LocaleService from '../service/locale.service'
 import servicesData from './service-center.data.js'
 import commerceIcon from '../assets/icon/icon_liansuo@2x.png'
 
-const defaultApp = 'platform'
+const defaultApp = keys(servicesData)[0] || 'platform'
 
-const getServicesByPage = (page = '') => {
-  const key = isEmpty(page) ? defaultApp : `${defaultApp}-${page}`
-  return translateService(servicesData[key])
-}
-const getServicesForMe = () => getServicesByPage('me')
-const getServicesFormHome = () => getServicesByPage('home')
-
-const translateService = (services = []) => {
-  return services.map((it) => {
-    const { odTermKey, fieldTermKey, isMultipleTerm } = it
-    const name = LocaleService.mtrans(odTermKey, fieldTermKey, isMultipleTerm)
-    return {
+const getServices = (page) => {
+  const services = servicesData[defaultApp] || []
+  return services
+    .filter((it) => isEmpty(page) || it.page === page)
+    .map((it) => ({
       ...it,
-      title: name,
       icon: commerceIcon,
-    }
-  })
+    }))
 }
 
 const ServiceCenterTools = {
-  getServicesForMe,
-  getServicesFormHome,
-  getServicesByPage,
+  getServices,
 }
 
 export default ServiceCenterTools

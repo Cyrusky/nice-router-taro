@@ -15,7 +15,9 @@ import ServiceCenterTools from '../../schema-data/service-center-tools'
 
 const defaultAvatar = 'http://www.eastphoto.cn/indexImages/ep-012136603.jpg'
 
-const Box_Navigator_List = [
+const defaultServices = ServiceCenterTools.getServices('me')
+
+const defaultActionList = [
   {
     code: 'FINE_DECORATION',
     icon: buildingIcon,
@@ -44,11 +46,9 @@ class MePage extends Taro.PureComponent {
   }
 
   render() {
-    const defaultLineItem = ServiceCenterTools.getServicesForMe()
-    console.log('defaultLineItemdefaultLineItemdefaultLineItem', defaultLineItem)
     const {
-      boxNavigatorList = Box_Navigator_List,
-      lineItemNavigatorList = defaultLineItem,
+      actionList = defaultActionList,
+      lineItemNavigatorList = defaultServices,
       name = '用户',
       brief = 'Level 1',
       imageUrl,
@@ -68,30 +68,33 @@ class MePage extends Taro.PureComponent {
             </View>
           </View>
           <View className='me-page-header-footer'>
-            <ShortcutsCard list={boxNavigatorList} />
+            <ShortcutsCard list={actionList} />
           </View>
         </View>
+
         <View className='me-page-body'>
-          <View className='service'>
-            {lineItemNavigatorList.map((it) => {
-              const { code } = it
-              return (
-                <View key={code} className='service-line' onClick={this.handleClick.bind(this, it)}>
-                  <View className='service-line-left'>
-                    <ServerImage
-                      my-class='service-line-left-image'
-                      mode='widthFix'
-                      src={it.icon || it.imageUrl || defaultAvatar}
-                    />
+          {lineItemNavigatorList.length > 0 && (
+            <View className='service'>
+              {lineItemNavigatorList.map((it) => {
+                const { code } = it
+                return (
+                  <View key={code} className='service-line' onClick={this.handleClick.bind(this, it)}>
+                    <View className='service-line-left'>
+                      <ServerImage
+                        my-class='service-line-left-image'
+                        mode='widthFix'
+                        src={it.icon || it.imageUrl || defaultAvatar}
+                      />
+                    </View>
+                    <View className='service-line-title'>{it.title}</View>
+                    <View className='service-line-right'>
+                      <AtIcon size={18} value='chevron-right' />
+                    </View>
                   </View>
-                  <View className='service-line-title'>{it.title}</View>
-                  <View className='service-line-right'>
-                    <AtIcon size={18} value='chevron-right' />
-                  </View>
-                </View>
-              )
-            })}
-          </View>
+                )
+              })}
+            </View>
+          )}
         </View>
       </View>
     )
