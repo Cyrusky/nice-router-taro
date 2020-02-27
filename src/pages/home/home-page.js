@@ -4,6 +4,9 @@ import { connect } from '@tarojs/redux'
 import EleCarousel from '@/genericpage/elements/ele-carousel'
 import ActionFloor from '@/components/common/action-floor'
 
+import NavigationService from '@/nice-router/navigation.service'
+import Config from '@/utils/config'
+
 import Listof from '../../listof/listof'
 import './home.scss'
 import SectionBar from '../service-center/section-bar'
@@ -16,7 +19,7 @@ const defaultServices = ServiceCenterTools.getServices('home')
 @connect(({ home }) => ({ ...home }))
 class HomePage extends Taro.PureComponent {
   componentDidMount() {
-    // NavigationService.view(Config.api.FooterHome)
+    NavigationService.view(Config.api.FooterHome)
   }
 
   // carousel,

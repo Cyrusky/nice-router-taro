@@ -34,6 +34,10 @@ const ViewmappingConfig = {
     pageName: '/pages/me/me-page',
     stateAction: 'me/save',
   },
+  'com.terapico.appview.ServiceCenterPage': {
+    pageName: '/pages/service-center/service-center-page',
+    stateAction: 'serviceCenter/save',
+  },
   'com.terapico.appview.LoginForm': {
     pageName: '/pages/login/login-page',
     stateAction: 'app/logout',

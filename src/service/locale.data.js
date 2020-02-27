@@ -10,7 +10,7 @@ const localeData = [
   { key: 'platform.exam_status_list', chinese: '考试状态列表', english: 'Exam Status List' },
   { key: 'platform.question_list', chinese: '问题列表', english: 'Question List' },
   { key: 'platform.exam_ranking_list', chinese: '考试排名', english: 'Exam Ranking List' },
-  { key: 'platform.wechat_user_list', chinese: '微信用户列表', english: 'Wechat User List' },
+  { key: 'platform.exam_user_list', chinese: '考试用户列表', english: 'Exam User List' },
   { key: 'change_request_type', chinese: '变更请求类型', english: 'Change Request Type' },
   { key: 'change_request_type.id', chinese: '序号', english: 'Id' },
   { key: 'change_request_type.name', chinese: '名称', english: 'Name' },
@@ -88,22 +88,22 @@ const localeData = [
   { key: 'answer.comment', chinese: '评论', english: 'Comment' },
   { key: 'answer.question', chinese: '检查问题', english: 'Question' },
   { key: 'answer.version', chinese: '版本', english: 'Version' },
-  { key: 'wechat_user', chinese: '微信用户', english: 'Wechat User' },
-  { key: 'wechat_user.id', chinese: '序号', english: 'Id' },
-  { key: 'wechat_user.name', chinese: '名称', english: 'Name' },
-  { key: 'wechat_user.avatar', chinese: '头像', english: 'Avatar' },
-  { key: 'wechat_user.create_time', chinese: '创建时间', english: 'Create Time' },
-  { key: 'wechat_user.user_type', chinese: '用户类型', english: 'User Type' },
-  { key: 'wechat_user.platform', chinese: '平台', english: 'Platform' },
-  { key: 'wechat_user.version', chinese: '版本', english: 'Version' },
-  { key: 'wechat_user.start_exam_list', chinese: '开始考试名单', english: 'Start Exam List' },
-  { key: 'wechat_user.answer_question_list', chinese: '回答问题列表', english: 'Answer Question List' },
-  { key: 'wechat_user.wechat_login_info_list', chinese: '微信登录信息列表', english: 'Wechat Login Info List' },
-  { key: 'wechat_user.exam_list', chinese: '考试名单', english: 'Exam List' },
-  { key: 'wechat_user.fault_answer_list', chinese: '错误的答案列表', english: 'Fault Answer List' },
+  { key: 'exam_user', chinese: '考试的用户', english: 'Exam User' },
+  { key: 'exam_user.id', chinese: 'ID', english: 'Id' },
+  { key: 'exam_user.name', chinese: '名称', english: 'Name' },
+  { key: 'exam_user.avatar', chinese: '头像', english: 'Avatar' },
+  { key: 'exam_user.create_time', chinese: '创建时间', english: 'Create Time' },
+  { key: 'exam_user.user_type', chinese: '用户类型', english: 'User Type' },
+  { key: 'exam_user.platform', chinese: '平台', english: 'Platform' },
+  { key: 'exam_user.version', chinese: '版本', english: 'Version' },
+  { key: 'exam_user.start_exam_list', chinese: '开始考试名单', english: 'Start Exam List' },
+  { key: 'exam_user.answer_question_list', chinese: '回答问题列表', english: 'Answer Question List' },
+  { key: 'exam_user.wechat_login_info_list', chinese: '微信登录信息列表', english: 'Wechat Login Info List' },
+  { key: 'exam_user.exam_list', chinese: '考试名单', english: 'Exam List' },
+  { key: 'exam_user.fault_answer_list', chinese: '错误的答案列表', english: 'Fault Answer List' },
   { key: 'wechat_login_info', chinese: '微信登录信息', english: 'Wechat Login Info' },
   { key: 'wechat_login_info.id', chinese: '序号', english: 'Id' },
-  { key: 'wechat_login_info.wechat_user', chinese: '微信用户', english: 'Wechat User' },
+  { key: 'wechat_login_info.exam_user', chinese: '考试的用户', english: 'Exam User' },
   { key: 'wechat_login_info.app_id', chinese: '应用程序Id', english: 'App Id' },
   { key: 'wechat_login_info.open_id', chinese: '开放Id', english: 'Open Id' },
   { key: 'wechat_login_info.session_key', chinese: '会话密钥', english: 'Session Key' },
@@ -164,16 +164,8 @@ const localeData = [
   { key: 'sec_user.version', chinese: '版本', english: 'Version' },
   { key: 'sec_user.user_app_list', chinese: '用户应用程序列表', english: 'User App List' },
   { key: 'sec_user.login_history_list', chinese: '登录历史列表', english: 'Login History List' },
-  {
-    key: 'sec_user.wechat_workapp_identify_list',
-    chinese: '微信工作程序识别列表',
-    english: 'Wechat Workapp Identify List',
-  },
-  {
-    key: 'sec_user.wechat_miniapp_identify_list',
-    chinese: '微信迷你应用识别列表',
-    english: 'Wechat Miniapp Identify List',
-  },
+  { key: 'sec_user.wechat_workapp_identify_list', chinese: '微信工作程序识别列表', english: 'Wechat Workapp Identify List' },
+  { key: 'sec_user.wechat_miniapp_identify_list', chinese: '微信迷你应用识别列表', english: 'Wechat Miniapp Identify List' },
   { key: 'user_app', chinese: '用户应用程序', english: 'User App' },
   { key: 'user_app.id', chinese: '序号', english: 'Id' },
   { key: 'user_app.title', chinese: '标题', english: 'Title' },
@@ -308,6 +300,22 @@ const localeData = [
   { key: 'wechat_miniapp_identify.create_time', chinese: '创建时间', english: 'Create Time' },
   { key: 'wechat_miniapp_identify.last_login_time', chinese: '最后登录时间', english: 'Last Login Time' },
   { key: 'wechat_miniapp_identify.version', chinese: '版本', english: 'Version' },
+
 ]
 
 export default localeData
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,6 +1,7 @@
 import viewConfig from './viewmapping.config'
 
-const baseURL = 'https://demo2.doublechaintech.com/storedev/wxappService/' //后端服务地址
+// const baseURL = 'https://demo2.doublechaintech.com/storedev/wxappService/' //后端服务地址
+const baseURL = 'http://localhost:8080/exam/wxappService/' //后端服务地址
 
 const niceRouterConfig = {
   // name: 'nice-router',
@@ -13,8 +14,10 @@ const niceRouterConfig = {
   api: {
     GenericPageMock: 'mock/',
 
-    FooterHome: 'viewHomepage/',
-    FooterMe: 'customerViewDashboard/',
+    FooterHome: 'viewHomePage/',
+    FooterMe: 'viewMePage/',
+    FooterServiceCenter: 'viewServiceCenterPage/',
+
     Login: 'clientLogin/',
     VerifyCode: 'sendVerifyCode/:mobile/',
     OSSToken: 'customGetOssToken/',

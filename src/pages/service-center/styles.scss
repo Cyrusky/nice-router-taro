@@ -50,7 +50,6 @@
 
     &-title {
       font-weight: 500;
-
       &::before {
         content: '\00a0';
         width: 10px;
@@ -58,6 +57,11 @@
         margin-right: 20px;
         background-color: $primary-color !important;
       }
+    }
+    .grid-container{
+      margin-top: 20px;
+      background-color: $white;
+      border-radius: 10px;
     }
   }
 }
@@ -123,6 +127,7 @@
   margin-top: 20px;
 
   .at-grid-item {
+    //background-color: $white !important;
     height: 183px !important;
   }
 
@@ -135,5 +140,6 @@
     margin-top: 20px;
     font-size: 28px !important;
     color: #2e2f31 !important;
+    padding:0 10px;
   }
 }

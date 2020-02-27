@@ -3,17 +3,19 @@ import { AtGrid, AtSearchBar } from 'taro-ui'
 import classNames from 'classnames'
 import { View } from '@tarojs/components'
 import ShortcutsCard from '@/components/common/shortcuts-card'
+import { connect } from '@tarojs/redux'
 import m_ from '@/utils/mini-lodash'
 import groupBy from 'lodash/groupBy'
+
 import forEach from 'lodash/forEach'
 
 import './styles.scss'
-
 import buildingIcon from '../../assets/icon/icon_loupan@2x.png'
 import commerceIcon from '../../assets/icon/icon_liansuo@2x.png'
 import ServiceCenterTools from '../../schema-data/service-center-tools'
 
-export default class ServiceCenterPage extends Taro.Component {
+@connect(({ serviceCenter }) => ({ ...serviceCenter }))
+class ServiceCenterPage extends Taro.Component {
   static options = {
     addGlobalClass: true,
   }
@@ -122,6 +124,8 @@ export default class ServiceCenterPage extends Taro.Component {
     )
   }
 }
+
+export default ServiceCenterPage
 
 const defaultShortcutsList = [
   {
