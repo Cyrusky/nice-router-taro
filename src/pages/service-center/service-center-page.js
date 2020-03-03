@@ -6,13 +6,14 @@ import ShortcutsCard from '@/components/common/shortcuts-card'
 import { connect } from '@tarojs/redux'
 import m_ from '@/utils/mini-lodash'
 import groupBy from 'lodash/groupBy'
-
+import isArray from 'lodash/isArray'
+import values from 'lodash/values'
 import forEach from 'lodash/forEach'
 
+import NavigationService from '@/nice-router/navigation.service'
+import Config from '@/utils/config'
+
 import './styles.scss'
-import buildingIcon from '../../assets/icon/icon_loupan@2x.png'
-import commerceIcon from '../../assets/icon/icon_liansuo@2x.png'
-import ServiceCenterTools from '../../schema-data/service-center-tools'
 
 @connect(({ serviceCenter }) => ({ ...serviceCenter }))
 class ServiceCenterPage extends Taro.Component {
@@ -25,6 +26,10 @@ class ServiceCenterPage extends Taro.Component {
     searchHistory: [],
   }
 
+  componentDidMount() {
+    NavigationService.view(Config.api.FooterServiceCenter)
+  }
+
   handleKeywordSearch = ({ keyword }) => {
     this.setState({ keyword })
   }
@@ -34,7 +39,7 @@ class ServiceCenterPage extends Taro.Component {
     })
   }
 
-  onActionClick = () => {
+  onSearchActionClick = () => {
     const { keyword, searchHistory = [] } = this.state
     console.log('开始搜索')
     const txt = m_.trim(keyword)
@@ -47,15 +52,21 @@ class ServiceCenterPage extends Taro.Component {
     }
   }
 
+  handleClick = (action) => {
+    NavigationService.view(action)
+  }
+
   render() {
-    const { actionList = defaultShortcutsList } = this.props
+    // const { actionList = defaultShortcutsList,sectionList=ServiceCenterTools.getServices() } = this.props
+    const { actionList = [], sectionList = [] } = this.props
     const { searchHistory = [] } = this.state
     const historyCls = classNames('search-bar-history', {
       'space-around': searchHistory.length === 4,
     })
 
-    const services = ServiceCenterTools.getServices()
-    const serviceGroup = groupBy(services, 'viewGroup')
+    const sections = isArray(sectionList) ? sectionList : values(sectionList)
+
+    const serviceGroup = groupBy(sections, 'viewGroup')
     const serviceGroupList = []
 
     forEach(serviceGroup, (serviceList, groupName = '') => {
@@ -82,7 +93,7 @@ class ServiceCenterPage extends Taro.Component {
             actionName='搜一下'
             value={this.state.keyword}
             onChange={this.onChange.bind(this)}
-            onActionClick={this.onActionClick.bind(this)}
+            onActionClick={this.onSearchActionClick.bind(this)}
           />
 
           {searchHistory.length > 0 && (
@@ -127,15 +138,15 @@ class ServiceCenterPage extends Taro.Component {
 
 export default ServiceCenterPage
 
-const defaultShortcutsList = [
-  {
-    code: 'FINE_DECORATION',
-    icon: buildingIcon,
-    title: '发起申请',
-  },
-  {
-    code: 'BIZ_CHAIN',
-    icon: commerceIcon,
-    title: '我发起',
-  },
-]
+// const defaultShortcutsList = [
+//   {
+//     code: 'FINE_DECORATION',
+//     icon: buildingIcon,
+//     title: '发起申请',
+//   },
+//   {
+//     code: 'BIZ_CHAIN',
+//     icon: commerceIcon,
+//     title: '我发起',
+//   },
+// ]
