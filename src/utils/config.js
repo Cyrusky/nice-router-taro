@@ -1,7 +1,7 @@
 import viewConfig from './viewmapping.config'
 
 // const baseURL = 'https://demo2.doublechaintech.com/storedev/wxappService/' //后端服务地址
-const baseURL = 'http://localhost:8080/exam/wxappService/' //后端服务地址
+const baseURL = 'http://localhost:8080/exam/' //后端服务地址
 
 const niceRouterConfig = {
   // name: 'nice-router',
@@ -14,11 +14,11 @@ const niceRouterConfig = {
   api: {
     GenericPageMock: 'mock/',
 
-    FooterHome: 'viewHomePage/',
-    FooterMe: 'viewMePage/',
-    FooterServiceCenter: 'viewServiceCenterPage/',
+    FooterHome: 'wxappService/viewHomePage/',
+    FooterMe: 'wxappService/viewMePage/',
+    FooterServiceCenter: 'wxappService/viewServiceCenterPage/',
 
-    Login: 'clientLogin/',
+    Login: 'wxappService/clientLogin/',
     VerifyCode: 'sendVerifyCode/:mobile/',
     OSSToken: 'customGetOssToken/',
   },
@@ -28,7 +28,9 @@ const Config = {
   ...niceRouterConfig,
   name: 'NiceRouter App Start',
   goBackSkipScreen: [],
-  useWxLogin: true,
+  useWxLogin: false,
+  useVcode: false,
+  usePassword: true,
 }
 
 console.log('***********   current env  ***********   ')

@@ -164,8 +164,16 @@ const localeData = [
   { key: 'sec_user.version', chinese: '版本', english: 'Version' },
   { key: 'sec_user.user_app_list', chinese: '用户应用程序列表', english: 'User App List' },
   { key: 'sec_user.login_history_list', chinese: '登录历史列表', english: 'Login History List' },
-  { key: 'sec_user.wechat_workapp_identify_list', chinese: '微信工作程序识别列表', english: 'Wechat Workapp Identify List' },
-  { key: 'sec_user.wechat_miniapp_identify_list', chinese: '微信迷你应用识别列表', english: 'Wechat Miniapp Identify List' },
+  {
+    key: 'sec_user.wechat_workapp_identify_list',
+    chinese: '微信工作程序识别列表',
+    english: 'Wechat Workapp Identify List',
+  },
+  {
+    key: 'sec_user.wechat_miniapp_identify_list',
+    chinese: '微信迷你应用识别列表',
+    english: 'Wechat Miniapp Identify List',
+  },
   { key: 'user_app', chinese: '用户应用程序', english: 'User App' },
   { key: 'user_app.id', chinese: '序号', english: 'Id' },
   { key: 'user_app.title', chinese: '标题', english: 'Title' },
@@ -300,22 +308,6 @@ const localeData = [
   { key: 'wechat_miniapp_identify.create_time', chinese: '创建时间', english: 'Create Time' },
   { key: 'wechat_miniapp_identify.last_login_time', chinese: '最后登录时间', english: 'Last Login Time' },
   { key: 'wechat_miniapp_identify.version', chinese: '版本', english: 'Version' },
-
 ]
 
 export default localeData
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

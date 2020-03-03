@@ -1,8 +1,8 @@
 const serviceData = {
   examUser: [
     {
-      fieldName: 'StartExamList', 
-      title: '开始考试名单', 
+      fieldName: 'StartExamList',
+      title: '开始考试名单',
       icon: 'hourglass-start',
       viewGroup: '首页动作',
       page: 'home',
@@ -10,8 +10,8 @@ const serviceData = {
     },
 
     {
-      fieldName: 'AnswerQuestionList', 
-      title: '回答问题列表', 
+      fieldName: 'AnswerQuestionList',
+      title: '回答问题列表',
       icon: 'question',
       viewGroup: '题目相关',
       page: 'me',
@@ -19,8 +19,8 @@ const serviceData = {
     },
 
     {
-      fieldName: 'WechatLoginInfoList', 
-      title: '微信登录信息列表', 
+      fieldName: 'WechatLoginInfoList',
+      title: '微信登录信息列表',
       icon: 'info',
       viewGroup: '个人相关',
       page: 'me',
@@ -28,8 +28,8 @@ const serviceData = {
     },
 
     {
-      fieldName: 'ExamList', 
-      title: '考试名单', 
+      fieldName: 'ExamList',
+      title: '考试名单',
       icon: '500px',
       viewGroup: '首页动作',
       page: 'home',
@@ -37,17 +37,14 @@ const serviceData = {
     },
 
     {
-      fieldName: 'FaultAnswerList', 
-      title: '错误的答案列表', 
+      fieldName: 'FaultAnswerList',
+      title: '错误的答案列表',
       icon: '500px',
       viewGroup: '题目相关',
       page: 'me',
       linkToUrl: 'faultAnswerManager/listByExamUser/:examUser/',
     },
-
   ],
-
 }
 
 export default serviceData
-

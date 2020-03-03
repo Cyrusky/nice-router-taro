@@ -1,6 +1,8 @@
 import Taro from '@tarojs/taro'
 import { View } from '@tarojs/components'
 import { connect } from '@tarojs/redux'
+import values from 'lodash/values'
+import isArray from 'lodash/isArray'
 import EleCarousel from '@/genericpage/elements/ele-carousel'
 import ActionFloor from '@/components/common/action-floor'
 
@@ -29,7 +31,7 @@ class HomePage extends Taro.PureComponent {
   render() {
     const { slideList = defaultSlideList, actionList = defaultServices, sectionList = defaultSectionList } = this.props
 
-    console.log('actionsLIst', actionList)
+    const sections = isArray(sectionList) ? sectionList : values(sectionList)
 
     return (
       <View className='home-page'>
@@ -37,7 +39,7 @@ class HomePage extends Taro.PureComponent {
         <View className='home-page-action-floor'>
           <ActionFloor actions={actionList} />
         </View>
-        {sectionList.map((section) => {
+        {sections.map((section) => {
           const { id, title, linkToUrl, brief, list } = section
           return (
             <View key={`${id}_${title}`} className='home-page-section'>

@@ -55,6 +55,7 @@ class App extends Component {
     pages: [
       'pages/home/home-page',
 
+      'pages/login/login-page',
       'pages/service-center/service-center-page',
       'pages/me/me-page',
 
@@ -69,7 +70,6 @@ class App extends Component {
       'listof/listof-page3',
       'listof/listof-page4',
       // biz
-      'pages/login/login-page',
     ],
     window: {
       backgroundTextStyle: 'light',
@@ -85,7 +85,6 @@ class App extends Component {
       backgroundColor: '#fafafa',
       borderStyle: 'black',
       list: [
-
         {
           pagePath: 'pages/home/home-page',
           iconPath: './assets/icon/icon_home_n@2x.png',
@@ -106,11 +105,8 @@ class App extends Component {
           selectedIconPath: './assets/icon/icon_me_s@2x.png',
           text: '我的',
         },
-
-
       ],
     },
-
   }
 
   // 在 App 类中的 render() 函数没有实际作用
@@ -125,16 +121,3 @@ class App extends Component {
 }
 
 Taro.render(<App />, document.getElementById('app'))
-
-
-
-
-
-
-
-
-
-
-
-
-
