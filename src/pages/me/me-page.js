@@ -12,6 +12,8 @@ import './me.scss'
 import buildingIcon from '../../assets/icon/icon_loupan@2x.png'
 import commerceIcon from '../../assets/icon/icon_liansuo@2x.png'
 import ServiceCenterTools from '../../schema-data/service-center-tools'
+import isArray from 'lodash/isArray'
+import values from 'lodash/values'
 
 const defaultAvatar = 'http://www.eastphoto.cn/indexImages/ep-012136603.jpg'
 
@@ -48,11 +50,13 @@ class MePage extends Taro.PureComponent {
   render() {
     const {
       actionList = defaultActionList,
-      lineItemNavigatorList = defaultServices,
+      sectionList = defaultServices,
       name = '用户',
       brief = 'Level 1',
       imageUrl,
     } = this.props
+
+    const sections = isArray(sectionList) ? sectionList : values(sectionList)
 
     return (
       <View className='me-page'>
@@ -73,9 +77,9 @@ class MePage extends Taro.PureComponent {
         </View>
 
         <View className='me-page-body'>
-          {lineItemNavigatorList.length > 0 && (
+          {sections.length > 0 && (
             <View className='service'>
-              {lineItemNavigatorList.map((it) => {
+              {sections.map((it) => {
                 const { code } = it
                 return (
                   <View key={code} className='service-line' onClick={this.handleClick.bind(this, it)}>
