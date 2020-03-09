@@ -198,15 +198,14 @@
     &-title {
       margin-left: 0;
       @extend %flex-row;
-      align-items: center;
-      height: 64px;
+      @include lamp-clamp(2);
+      white-space: unset;
       color: #232326;
       font-size: 26px;
-      line-height: 32px;
-      @include lamp-clamp(2);
+      height: 3em;
     }
 
-    &-brief {
+    &-footer {
       margin-left: 0;
       font-size: 32px;
       color: #f23030;

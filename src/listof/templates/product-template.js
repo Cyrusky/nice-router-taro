@@ -13,9 +13,17 @@ export default class ProductTemplate extends Taro.PureComponent {
 
   render() {
     const { item = {} } = this.props
-    const { preTag = '', tags = [], brand, name, price } = item
+    const { preTag = '精', tags = [], brand, brief, title, listPrice, salePrice } = item
     const src = getImageUrl(item)
 
+    let prefixTag = preTag
+    if (salePrice && salePrice < listPrice) {
+      prefixTag = '促'
+    }
+    if (tags.length === 0) {
+      tags.push(`${salePrice}`)
+      tags.push(brand)
+    }
     return (
       <View className='product'>
         <View className='product-img'>
@@ -25,21 +33,20 @@ export default class ProductTemplate extends Taro.PureComponent {
           <View className='content-title'>
             {preTag.length > 0 && (
               <AtTag className='red-tag' size='small' active>
-                {preTag}
+                {prefixTag}
               </AtTag>
             )}
-            <Text style={{ marginLeft: '10px' }}>{`${brand} ${name}`}</Text>
+            <Text className='content-title-txt' style={{ marginLeft: '10px' }}>
+              {`${brand} ${title} ${brief}`}{' '}
+            </Text>
           </View>
-          <View className='content-brief'>
-            <Text numberOfLines={1}>{`￥${price}`}</Text>
-            {tags.map(
-              (it) =>
-                it.length > 0 && (
-                  <AtTag className='red-tag-tiny' key={it} size='small' active>
-                    {it}
-                  </AtTag>
-                )
-            )}
+          <View className='content-footer'>
+            <Text className='content-footer-price' numberOfLines={1}>{`￥${listPrice}`}</Text>
+            {tags.map((it) => (
+              <AtTag className='red-tag-tiny' key={it} size='small' active>
+                {it}
+              </AtTag>
+            ))}
           </View>
         </View>
       </View>

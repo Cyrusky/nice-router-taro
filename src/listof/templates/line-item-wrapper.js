@@ -7,7 +7,6 @@ import NavigationService from '@/nice-router/navigation.service'
 import UserTemplate from '@/listof/templates/user-template'
 
 import AutoTemplate from './auto-template'
-import ArticleTemplate from './article-template'
 import CardTemplate from './card-template'
 import DocumentCardTemplate from './document-card-template'
 import Waterfall from './waterfall-templage'
@@ -16,6 +15,7 @@ import ImageOnBottomTemplate from './image-on-bottom'
 
 import '../listof.scss'
 
+//不触发click事件的模板
 const ITEM_SELF_PROCESS_WHITELIST = ['document']
 
 export default class LineItemWrapper extends Taro.PureComponent {
@@ -123,8 +123,6 @@ export default class LineItemWrapper extends Taro.PureComponent {
         {template === 'product' && <ProductTemplate {...itemProps} />}
         {template === 'card' && <CardTemplate {...itemProps} />}
         {template === 'document' && <DocumentCardTemplate {...itemProps} />}
-        {template === 'article' && <ArticleTemplate {...itemProps} />}
-        {template === 'article-small' && <ArticleTemplate className='article-small' {...itemProps} />}
       </View>
     )
   }
