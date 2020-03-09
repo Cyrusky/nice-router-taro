@@ -1,22 +1,18 @@
 import Taro from '@tarojs/taro'
 import { View } from '@tarojs/components'
 import { connect } from '@tarojs/redux'
-import values from 'lodash/values'
-import isArray from 'lodash/isArray'
 import EleCarousel from '@/genericpage/elements/ele-carousel'
 import ActionFloor from '@/components/common/action-floor'
 
 import NavigationService from '@/nice-router/navigation.service'
 import Config from '@/utils/config'
+import SectionBar from '@/components/common/section-bar'
 
+import { LoadingType } from '@/nice-router/nice-router-util'
 import Listof from '../../listof/listof'
 import './home.scss'
-import SectionBar from '../service-center/section-bar'
-import ServiceCenterTools from '../../schema-data/service-center-tools'
 
 const defaultImageUrl = 'http://www.eastphoto.cn/indexImages/ep-012136603.jpg'
-
-const defaultServices = ServiceCenterTools.getServices('home')
 
 @connect(({ home }) => ({ ...home }))
 class HomePage extends Taro.PureComponent {
@@ -24,14 +20,23 @@ class HomePage extends Taro.PureComponent {
     NavigationService.view(Config.api.FooterHome)
   }
 
+  onPullDownRefresh = () => {
+    NavigationService.ajax(
+      Config.api.FooterHome,
+      {},
+      {
+        onSuccess: () => Taro.stopPullDownRefresh(),
+        loading: LoadingType.modal,
+      }
+    )
+  }
+
   // carousel,
   // change request
   // icon list
   // 展开 list个
   render() {
-    const { slideList = defaultSlideList, actionList = defaultServices, sectionList = defaultSectionList } = this.props
-
-    const sections = isArray(sectionList) ? sectionList : values(sectionList)
+    const { slideList = defaultSlideList, actionList = [], sectionList = defaultSectionList } = this.props
 
     return (
       <View className='home-page'>
@@ -39,8 +44,9 @@ class HomePage extends Taro.PureComponent {
         <View className='home-page-action-floor'>
           <ActionFloor actions={actionList} />
         </View>
-        {sections.map((section) => {
-          const { id, title, linkToUrl, brief, list } = section
+        {sectionList.map((section) => {
+          const { id, title, linkToUrl, brief } = section
+          const list = this.props[id] || []
           return (
             <View key={`${id}_${title}`} className='home-page-section'>
               <SectionBar title={title} brief={brief} linkToUrl={linkToUrl} />

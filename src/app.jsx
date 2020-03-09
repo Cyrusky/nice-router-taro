@@ -54,10 +54,13 @@ class App extends Component {
   config = {
     pages: [
       'pages/home/home-page',
-
       'pages/login/login-page',
       'pages/service-center/service-center-page',
       'pages/me/me-page',
+      'pages/detail/detail-page',
+      'pages/detail/detail-page2',
+      'pages/detail/detail-page3',
+      'pages/detail/detail-page4',
 
       // base
       'nice-router/h5-page',

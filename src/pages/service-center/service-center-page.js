@@ -6,13 +6,12 @@ import ShortcutsCard from '@/components/common/shortcuts-card'
 import { connect } from '@tarojs/redux'
 import m_ from '@/utils/mini-lodash'
 import groupBy from 'lodash/groupBy'
-import isArray from 'lodash/isArray'
-import values from 'lodash/values'
 import forEach from 'lodash/forEach'
 
 import NavigationService from '@/nice-router/navigation.service'
 import Config from '@/utils/config'
 
+import { LoadingType } from '@/nice-router/nice-router-util'
 import './styles.scss'
 
 @connect(({ serviceCenter }) => ({ ...serviceCenter }))
@@ -28,6 +27,17 @@ class ServiceCenterPage extends Taro.Component {
 
   componentDidMount() {
     NavigationService.view(Config.api.FooterServiceCenter)
+  }
+
+  onPullDownRefresh = () => {
+    NavigationService.ajax(
+      Config.api.FooterServiceCenter,
+      {},
+      {
+        onSuccess: () => Taro.stopPullDownRefresh(),
+        loading: LoadingType.modal,
+      }
+    )
   }
 
   handleKeywordSearch = ({ keyword }) => {
@@ -64,9 +74,7 @@ class ServiceCenterPage extends Taro.Component {
       'space-around': searchHistory.length === 4,
     })
 
-    const sections = isArray(sectionList) ? sectionList : values(sectionList)
-
-    const serviceGroup = groupBy(sections, 'viewGroup')
+    const serviceGroup = groupBy(sectionList, 'viewGroup')
     const serviceGroupList = []
 
     forEach(serviceGroup, (serviceList, groupName = '') => {

@@ -46,7 +46,24 @@ const ViewmappingConfig = {
     pageName: '/pages/home/home-page',
     stateAction: 'home/saveHomeData',
   },
-
+  'com.terapico.appview.DetailPage': [
+    {
+      pageName: '/pages/detail/detail-page',
+      stateAction: ['detail/save', 'detail2/clear'],
+    },
+    {
+      pageName: '/pages/detail/detail-page2',
+      stateAction: ['detail2/save', 'detail3/clear'],
+    },
+    {
+      pageName: '/pages/detail/detail-page3',
+      stateAction: ['detail3/save', 'detail4/clear'],
+    },
+    {
+      pageName: '/pages/detail/detail-page4',
+      stateAction: ['detail4/save', 'detail/clear'],
+    },
+  ],
   // end global pages
 
   'com.mock': [

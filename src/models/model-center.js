@@ -29,6 +29,10 @@ const modelListOOTB = [
   'listofpage4',
   //biz
   'serviceCenter',
+  'detail',
+  'detail2',
+  'detail3',
+  'detail4',
 ]
 
 const customizedModelList = []
