@@ -7,11 +7,10 @@ import Config from '@/utils/config'
 import { AtIcon } from 'taro-ui'
 import ServerImage from '@/components/image/server-image'
 
-import { LoadingType } from '@/nice-router/nice-router-util'
-
 import './me.scss'
 import buildingIcon from '../../assets/icon/icon_loupan@2x.png'
 import commerceIcon from '../../assets/icon/icon_liansuo@2x.png'
+import { ajaxPullDownRefresh } from '@/utils/index'
 
 const defaultAvatar = 'http://www.eastphoto.cn/indexImages/ep-012136603.jpg'
 
@@ -35,14 +34,7 @@ class MePage extends Taro.PureComponent {
   }
 
   onPullDownRefresh = () => {
-    NavigationService.ajax(
-      Config.api.FooterMe,
-      {},
-      {
-        onSuccess: () => Taro.stopPullDownRefresh(),
-        loading: LoadingType.modal,
-      }
-    )
+    ajaxPullDownRefresh(this.props)
   }
 
   handleOpenProfile = () => {

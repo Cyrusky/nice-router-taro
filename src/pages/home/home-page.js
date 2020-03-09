@@ -6,10 +6,10 @@ import ActionFloor from '@/components/common/action-floor'
 
 import NavigationService from '@/nice-router/navigation.service'
 import Config from '@/utils/config'
+import { ajaxPullDownRefresh } from '@/utils/index'
 import SectionBar from '@/components/common/section-bar'
-
-import { LoadingType } from '@/nice-router/nice-router-util'
 import Listof from '../../listof/listof'
+
 import './home.scss'
 
 const defaultImageUrl = 'http://www.eastphoto.cn/indexImages/ep-012136603.jpg'
@@ -20,15 +20,8 @@ class HomePage extends Taro.PureComponent {
     NavigationService.view(Config.api.FooterHome)
   }
 
-  onPullDownRefresh = () => {
-    NavigationService.ajax(
-      Config.api.FooterHome,
-      {},
-      {
-        onSuccess: () => Taro.stopPullDownRefresh(),
-        loading: LoadingType.modal,
-      }
-    )
+  onPullDownRefresh() {
+    ajaxPullDownRefresh(Config.api.FooterHome)
   }
 
   // carousel,

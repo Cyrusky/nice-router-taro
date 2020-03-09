@@ -9,9 +9,8 @@ import classNames from 'classnames'
 import ServerImage from '@/components/image/server-image'
 import { AtButton } from 'taro-ui'
 import NavigationService from '@/nice-router/navigation.service'
-import { formatTime } from '@/utils/index'
+import { ajaxPullDownRefresh, formatTime } from '@/utils/index'
 import SectionBar from '@/components/common/section-bar'
-import { LoadingType } from '@/nice-router/nice-router-util'
 
 import './styles.scss'
 
@@ -35,14 +34,7 @@ class DetailPage extends Taro.Component {
   }
 
   onPullDownRefresh = () => {
-    NavigationService.ajax(
-      this.props.linkToUrl,
-      {},
-      {
-        onSuccess: () => Taro.stopPullDownRefresh(),
-        loading: LoadingType.modal,
-      }
-    )
+    ajaxPullDownRefresh(this.props)
   }
 
   handleClick = (action) => {

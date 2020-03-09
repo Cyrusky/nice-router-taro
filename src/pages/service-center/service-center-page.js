@@ -7,11 +7,9 @@ import { connect } from '@tarojs/redux'
 import m_ from '@/utils/mini-lodash'
 import groupBy from 'lodash/groupBy'
 import forEach from 'lodash/forEach'
-
+import { ajaxPullDownRefresh } from '@/utils/index'
 import NavigationService from '@/nice-router/navigation.service'
 import Config from '@/utils/config'
-
-import { LoadingType } from '@/nice-router/nice-router-util'
 import './styles.scss'
 
 @connect(({ serviceCenter }) => ({ ...serviceCenter }))
@@ -30,14 +28,7 @@ class ServiceCenterPage extends Taro.Component {
   }
 
   onPullDownRefresh = () => {
-    NavigationService.ajax(
-      Config.api.FooterServiceCenter,
-      {},
-      {
-        onSuccess: () => Taro.stopPullDownRefresh(),
-        loading: LoadingType.modal,
-      }
-    )
+    ajaxPullDownRefresh(Config.api.FooterServiceCenter)
   }
 
   handleKeywordSearch = ({ keyword }) => {
