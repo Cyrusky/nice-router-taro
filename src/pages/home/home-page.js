@@ -38,12 +38,12 @@ class HomePage extends Taro.PureComponent {
           <ActionFloor actions={actionList} />
         </View>
         {sectionList.map((section) => {
-          const { id, title, linkToUrl, brief } = section
+          const { id, title, linkToUrl, brief, displayMode } = section
           const list = this.props[id] || []
           return (
             <View key={`${id}_${title}`} className='home-page-section'>
               <SectionBar title={title} brief={brief} linkToUrl={linkToUrl} />
-              <Listof list={list} />
+              <Listof list={list} displayMode={displayMode} />
             </View>
           )
         })}

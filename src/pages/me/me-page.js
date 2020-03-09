@@ -6,11 +6,11 @@ import ShortcutsCard from '@/components/common/shortcuts-card'
 import Config from '@/utils/config'
 import { AtIcon } from 'taro-ui'
 import ServerImage from '@/components/image/server-image'
+import { ajaxPullDownRefresh } from '@/utils/index'
 
 import './me.scss'
 import buildingIcon from '../../assets/icon/icon_loupan@2x.png'
 import commerceIcon from '../../assets/icon/icon_liansuo@2x.png'
-import { ajaxPullDownRefresh } from '@/utils/index'
 
 const defaultAvatar = 'http://www.eastphoto.cn/indexImages/ep-012136603.jpg'
 

@@ -3,9 +3,6 @@
 .detail-page {
   @extend %page;
 
-  .action-bar {
-  }
-
   .prop-section {
     background-color: $white;
     margin: 20px;
@@ -26,17 +23,32 @@
         &-text {
           color: $text-color-light;
         }
-        &-image {
+
+        &-longText {
+          color: $text-color-light;
+          padding: 10px;
+          font-size: 26px;
+        }
+
+        &-file {
+          .at-button {
+            background-color: white;
+            color: $text-color-light;
+            margin-right: 20px;
+          }
         }
       }
     }
 
-    &-item.inline {
+    &-item.inline,
+    &-item.file {
       @extend %flex-row;
     }
+
     &-item.link {
-      @extend %flex-row;
-      color: $color-brand-light;
+      .prop-section-item-value-text {
+        color: $color-brand-light;
+      }
     }
   }
 

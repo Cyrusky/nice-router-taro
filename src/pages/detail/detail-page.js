@@ -12,7 +12,10 @@ import NavigationService from '@/nice-router/navigation.service'
 import { ajaxPullDownRefresh, formatTime } from '@/utils/index'
 import SectionBar from '@/components/common/section-bar'
 
+import EleActionList from '@/genericpage/elements/ele-action-list'
 import './styles.scss'
+
+const SHOW_AS_INLIN_TEXT = ['text', 'date', 'time', 'status', 'object']
 
 @connect(({ detail }) => ({ ...detail }))
 class DetailPage extends Taro.Component {
@@ -37,16 +40,35 @@ class DetailPage extends Taro.Component {
     ajaxPullDownRefresh(this.props)
   }
 
-  handleClick = (action) => {
-    NavigationService.view(action)
+  handleClick = (action, id) => {
+    NavigationService.view(action, { id })
   }
 
-  getObjectDisplayValue = (obj, field) => {
-    console.log('obj+field', obj, field, obj[field])
-    if (obj) {
-      return obj[field]
+  getDisplayValue = (item) => {
+    const { type, fieldName, displayField } = item
+    let displayValue = this.props[fieldName]
+
+    if (type === 'date') {
+      displayValue = formatTime(displayValue)
     }
-    return obj
+
+    if (type === 'time') {
+      displayValue = formatTime(displayValue, 'yyyy-MM-dd HH:MM')
+    }
+
+    if (type === 'status') {
+      displayValue = `${displayValue.name} (${displayValue.code})`
+    }
+
+    if (type === 'object') {
+      if (displayValue) {
+        return {
+          ...displayValue,
+          displayValue: displayValue[displayField],
+        }
+      }
+    }
+    return { displayValue }
   }
 
   render() {
@@ -61,45 +83,65 @@ class DetailPage extends Taro.Component {
         )}
 
         <View className='prop-section'>
-          {propList.map((it) => {
-            const { id, type, label, fieldName, displayField } = it
-            let value = this.props[fieldName]
+          {propList.map((propItem) => {
+            const { id: key, type, label } = propItem
 
-            const inlineText = !(type === 'longText' || type === 'image' || type === 'imageList')
+            const inlineText = SHOW_AS_INLIN_TEXT.includes(type)
+
             const rootCls = classNames('prop-section-item', {
               inline: inlineText,
-              link: NavigationService.isActionLike(it),
+              link: NavigationService.isActionLike(propItem),
+              [type]: true,
             })
-            if (type === 'date') {
-              value = formatTime(value)
-            }
-            if (type === 'time') {
-              value = formatTime(value, 'yyyy-MM-dd HH:MM')
-            }
 
-            if (type === 'status') {
-              value = `${value.name} (${value.code})`
-            }
-
-            if (type === 'object') {
-              value = this.getObjectDisplayValue(value, displayField)
-            }
+            const { displayValue, id: itemId } = this.getDisplayValue(propItem)
 
             return (
-              <View key={id} className={rootCls}>
+              <View key={key} className={rootCls}>
                 <View className='prop-section-item-label'>{label}</View>
                 <View className='prop-section-item-value'>
                   {inlineText && (
-                    <Text className='prop-section-item-value-text' onClick={this.handleClick.bind(this, it)}>
-                      {value}
+                    <Text
+                      className='prop-section-item-value-text'
+                      onClick={this.handleClick.bind(this, propItem, itemId)}
+                    >
+                      {displayValue}
                     </Text>
                   )}
 
-                  {type === 'image' && (
-                    <ServerImage my-class='prop-section-item-value-image' src={value} size='large' mode='widthFix' />
+                  {type === 'longText' && <Text className='prop-section-item-value-longText'>{displayValue}</Text>}
+
+                  {type === 'file' && (
+                    <View className='prop-section-item-value-file'>
+                      <EleActionList
+                        list={[
+                          {
+                            id: 'open-document',
+                            btnType: 'open-document',
+                            linkToUrl: displayValue,
+                            title: '查看',
+                          },
+                          {
+                            id: 'download-document',
+                            btnType: 'download',
+                            linkToUrl: displayValue,
+                            title: '下载',
+                          },
+                        ]}
+                      />
+                    </View>
                   )}
 
-                  {type === 'imageList' && <EleCarousel items={value} />}
+                  {type === 'image' && (
+                    <ServerImage
+                      my-class='prop-section-item-value-image'
+                      src={displayValue}
+                      size='large'
+                      mode='widthFix'
+                    />
+                  )}
+
+                  {type === 'imageList' && <EleCarousel items={displayValue} />}
                 </View>
               </View>
             )
@@ -107,14 +149,14 @@ class DetailPage extends Taro.Component {
         </View>
 
         {sectionList.map((section) => {
-          const { id, title, linkToUrl, brief } = section
+          const { id, title, linkToUrl, brief, displayMode } = section
           const list = this.props[id] || []
           return (
             <View key={`${id}_${title}`}>
               <View className='section-list'>
                 <SectionBar title={title} brief={brief} linkToUrl={linkToUrl} />
               </View>
-              <Listof list={list} />
+              <Listof list={list} displayMode={displayMode} />
             </View>
           )
         })}
