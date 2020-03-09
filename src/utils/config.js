@@ -14,8 +14,8 @@ const niceRouterConfig = {
   api: {
     GenericPageMock: 'mock/',
 
-    // FooterHome: 'wxappService/viewHomePage/',
-    FooterHome: 'socialProductManager/listByUser/EU000001/',
+    FooterHome: 'wxappService/viewHomePage/',
+    // FooterHome: 'socialProductManager/listByUser/EU000001/',
     FooterMe: 'wxappService/viewMePage/',
     FooterServiceCenter: 'wxappService/viewServiceCenterPage/',
 
