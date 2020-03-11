@@ -4,7 +4,8 @@ import { connect } from '@tarojs/redux'
 import NavigationService from '@/nice-router/navigation.service'
 import ShortcutsCard from '@/components/common/shortcuts-card'
 import Config from '@/utils/config'
-import { AtIcon } from 'taro-ui'
+import { AtButton, AtIcon } from 'taro-ui'
+import classNames from 'classnames'
 import ServerImage from '@/components/image/server-image'
 import { ajaxPullDownRefresh } from '@/utils/index'
 
@@ -46,23 +47,76 @@ class MePage extends Taro.PureComponent {
     NavigationService.view(item)
   }
 
-  render() {
-    const { actionList = defaultActionList, sectionList = [], name = '用户', brief = 'Level 1', imageUrl } = this.props
+  handleUpdateProfileInfo = (e) => {
+    if (!e || !e.detail) {
+      return
+    }
+    console.log('handle get user info')
+    const { userInfo = {} } = e.detail
+    const { nickName, avatarUrl } = userInfo
+    NavigationService.ajax(Config.api.UpdateProfileInfo, {
+      name: encodeURIComponent(nickName),
+      avatar: encodeURIComponent(avatarUrl),
+    })
+  }
 
+  handleUpdateMobile = (e) => {
+    if (!e || !e.detail) {
+      return
+    }
+    const { encryptedData, iv } = e.detail
+    NavigationService.ajax(Config.api.UpdatePhoneNumber, {
+      encryptedData: encodeURIComponent(encryptedData),
+      iv: encodeURIComponent(iv),
+    })
+  }
+
+  render() {
+    const {
+      actionList = defaultActionList,
+      sectionList = [],
+      name,
+      brief,
+      userLike = false,
+      useMobile = false,
+      avatar,
+    } = this.props
+
+    let userBrief = brief
+    if (useMobile) {
+      if (brief) {
+        userBrief = `${brief} (更新)`
+      } else {
+        userBrief = '授权获取号码'
+      }
+    }
+
+    const actionListCls = classNames('me-page-header-footer', { 'user-like': userLike })
     return (
       <View className='me-page'>
         <View className='me-page-header'>
-          <View className='me-page-header-top'>
-            <View className='avatar' onClick={this.handleOpenProfile}>
-              <ServerImage my-class='avatar-image' src={imageUrl || defaultAvatar} />
-            </View>
+          {userLike && (
+            <View className='me-page-header-top'>
+              <AtButton openType='getUserInfo' className='transparent-btn' onGetUserInfo={this.handleUpdateProfileInfo}>
+                <View className='me-page-header-top-avatar'>
+                  <ServerImage my-class='avatar-image' src={avatar || defaultAvatar} />
+                </View>
+              </AtButton>
 
-            <View className='content'>
-              <View className='content-name'>{name}</View>
-              <View className='content-brief'>{brief}</View>
+              <View className='me-page-header-top-title'>
+                {name && <View className='me-page-header-top-title-name'>{name}</View>}
+                <AtButton
+                  openType='getPhoneNumber'
+                  className='transparent-btn'
+                  onGetPhoneNumber={this.handleUpdateMobile}
+                  disabled={!useMobile}
+                >
+                  <View className='me-page-header-top-title-brief'>{userBrief}</View>
+                </AtButton>
+              </View>
             </View>
-          </View>
-          <View className='me-page-header-footer'>
+          )}
+          <View className={actionListCls}>
             <ShortcutsCard list={actionList} />
           </View>
         </View>

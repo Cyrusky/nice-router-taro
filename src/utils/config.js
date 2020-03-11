@@ -18,6 +18,8 @@ const niceRouterConfig = {
     // FooterHome: 'socialProductManager/listByUser/EU000001/',
     FooterMe: 'wxappService/viewMePage/',
     FooterServiceCenter: 'wxappService/viewServiceCenterPage/',
+    UpdateProfileInfo: 'wxappService/updateProfileInfo/:name/:avatar/',
+    UpdatePhoneNumber: 'wxappService/updatePhoneNumber/:encryptedData/:iv/',
 
     Login: 'wxappService/clientLogin/',
     VerifyCode: 'sendVerifyCode/:mobile/',
