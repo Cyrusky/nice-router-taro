@@ -77,7 +77,7 @@ class App extends Component {
     window: {
       backgroundTextStyle: 'light',
       navigationBarBackgroundColor: '#28aaff',
-      navigationBarTitleText: '链问链答考试中台',
+      navigationBarTitleText: 'Nice-Router',
       navigationBarTextStyle: 'white',
       enablePullDownRefresh: true,
     },

@@ -30,7 +30,7 @@
 
 
 
-[更多文档](/docs/README.md)
+[更多文档](https://github.com/kala888/nice-router/blob/master/docs/README.md)
 
 
 
@@ -55,6 +55,6 @@
 nice-router 包含两部分：
 
 
-[nice-router-taro 开发文档](https://github.com/doublechaintech/nice-router/blob/master/docs/README.md)
+[nice-router-taro 开发文档](https://github.com/kala888/nice-router/blob/master/docs/README.md)
 
 [nice-router-react-native 开发文档](https://github.com/doublechaintech/nice-router) (暂未开源, 稍等片刻)
