@@ -77,7 +77,7 @@ class App extends Component {
     window: {
       backgroundTextStyle: 'light',
       navigationBarBackgroundColor: '#28aaff',
-      navigationBarTitleText: 'Nice-Router',
+      navigationBarTitleText: 'nice-router',
       navigationBarTextStyle: 'white',
       enablePullDownRefresh: true,
     },

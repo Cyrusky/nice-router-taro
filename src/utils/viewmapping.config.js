@@ -38,7 +38,7 @@ const ViewmappingConfig = {
     pageName: '/pages/service-center/service-center-page',
     stateAction: 'serviceCenter/save',
   },
-  'LoginForm': {
+  LoginForm: {
     pageName: '/pages/login/login-page',
     stateAction: 'app/logout',
   },
