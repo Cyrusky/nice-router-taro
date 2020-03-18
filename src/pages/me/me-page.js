@@ -99,7 +99,7 @@ class MePage extends Taro.PureComponent {
             <View className='me-page-header-top'>
               <AtButton openType='getUserInfo' className='transparent-btn' onGetUserInfo={this.handleUpdateProfileInfo}>
                 <View className='me-page-header-top-avatar'>
-                  <ServerImage my-class='avatar-image' src={avatar || defaultAvatar} />
+                  <ServerImage size='wechat-avatar' my-class='avatar-image' src={avatar || defaultAvatar} />
                 </View>
               </AtButton>
 
